@@ -1,0 +1,18 @@
+<!--pages/modify_psw/modify_psw.wxml-->
+<view class='content'>
+  <view class='idnum' >
+    <view class='font'>原密码</view>
+    <input placeholder=''></input>
+  </view>
+  <view class='idnum' >
+    <view class='font'>新密码</view>
+    <input placeholder=''></input>
+  </view>
+  <view class='idnum'>
+    <view class='font'>再次输入</view>
+    <input placeholder=''></input>
+  </view>
+  <view class='login'>
+    <button>确认</button>
+  </view>
+</view>
