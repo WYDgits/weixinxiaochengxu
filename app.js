@@ -1,12 +1,26 @@
 //app.js
 App({
-  data:{
-    idnum:'',
-    password:''
+  data: {
+
   },
-  onLaunch: function () {
+  globalData: { 
+    //手机号码和登录账号、登录密码、验证码
+    phoneNum: '',
+    password:'123456',
+    validation: '',
+
+    //设置短信发送间隔
+    sendMail:15,
+    //设置本地缓存清理周期
+    clearSto:60*60*12*1000,
+
+    //设置注册时间
+    setTime:''
+
+  },
+  onLaunch: function() {
     // 展示本地存储能力
-    
+
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
@@ -38,18 +52,16 @@ App({
       }
     })
   },
-  globalData: {
-    userInfo: null
-  },
-  getVaild: function (e,cb) {
+
+  getVaild: function(e, cb) {
     wx.request({
-      url: 'http://84wstj.natappfree.cc/thinkphp/public/index/index/func?phoneNum=' +e,
-      success: function (res) {
+      url: 'http://84wstj.natappfree.cc/thinkphp/public/index/index/func?phoneNum=' + e,
+      success: function(res) {
         console.log(res)
         cb(res.data)
       },
-      fail:function(){
-        
+      fail: function() {
+
       }
     })
   }

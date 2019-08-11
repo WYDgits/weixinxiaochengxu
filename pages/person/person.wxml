@@ -6,10 +6,10 @@
   </view>
   <view class='content'>
     <view class='idnum' bindtap='next_to'>
-      <view class='font'>{{modify_psw}}</view><image src='../images/right.png'></image>
+      <view class='font'>{{modify_psw}}</view><image src='../../images/right.png'></image>
     </view>
     <view class='idnum' bindtap='logout'>
-      <view class='font' >{{logout}}</view><image src='../images/right.png'></image>
+      <view class='font' >{{logout}}</view><image src='../../images/right.png'></image>
     </view>
   </view>
 

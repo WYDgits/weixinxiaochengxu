@@ -4,12 +4,12 @@
   <text class='header2'>请输入您的手机号码,登录或注册您的临时网络账号</text>
   <view class='content'>
     <view class='phone'>
-      <input type='text' placeholder='手机号' bindinput='inputNum'></input>
+      <input type='number' placeholder='手机号' bindinput='inputNum'></input>
     </view>
   </view>
   <view class='content'>
     <view class='validation'>
-      <input type='text'  placeholder='验证码' bindinput='inputValid'></input>
+      <input type='number'  placeholder='验证码' bindinput='inputValid'></input>
     </view>
     <view class='button'>
       <button bindtap='getData' disabled='{{disabled}}'>{{codename}}</button>
@@ -19,5 +19,7 @@
     <button  bindtap='register' >登录</button>
   </view>
   <text class='header2'>温馨提示：登陆时自动注册</text>
-  <button bindtap='login'>跳转</button>
+  <!-- <view>{{phoneNum}}</view>
+  <view>{{validation}}</view> -->
+  <!-- <button bindtap='login'>跳转</button> -->
 </view>

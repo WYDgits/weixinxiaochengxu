@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/register/register",
-    "pages/person/person",
     "pages/modify_psw/modify_psw",
+    "pages/person/person",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -19,14 +19,14 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "pages/images/index1.png",
-        "selectedIconPath": "pages/images/index2.png"
+        "iconPath": "images/index1.png",
+        "selectedIconPath": "images/index2.png"
       },
       {
         "pagePath": "pages/person/person",
         "text": "个人中心",
-        "iconPath": "pages/images/person1.png",
-        "selectedIconPath": "pages/images/person2.png"
+        "iconPath": "images/person1.png",
+        "selectedIconPath": "images/person2.png"
       }
     ]
   },

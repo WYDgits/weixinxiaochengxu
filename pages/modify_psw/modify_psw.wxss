@@ -21,7 +21,7 @@
 }
 .font{
   color: #2284e6;
-  width: 30%;
+  width:15rpx;
   display: inline-block;
   margin-left:30rpx;
   vertical-align: middle

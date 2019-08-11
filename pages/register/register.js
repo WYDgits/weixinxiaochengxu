@@ -20,7 +20,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    // this.phoneNum = getApp().globalData.phoneNum, 
+    // this.validation = getApp().globalData.validation,
+
   },
 
   /**
@@ -61,8 +63,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phone: '',
-    valid: '',
+    phoneNum: '',
+    validation: '',
     codename: '获取验证码',
     disabled: false,
     isShow: true
@@ -74,13 +76,13 @@ Page({
   },
   inputNum: function(e) {
     this.setData({
-      phone: e.detail.value
+      phoneNum: e.detail.value
     })
     console.log("phone:"+e.detail.value)
   },
   inputValid: function(e) {
     this.setData({
-      valid: e.detail.value
+      validation: e.detail.value
     })
     console.log("valid:"+e.detail.value)
   },
@@ -92,7 +94,7 @@ Page({
   getData: function() {
     let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
 
-    if (this.data.phone.trim() == ''||!myreg.test(this.data.phone.trim())) {
+    if (this.data.phoneNum.trim() == ''||!myreg.test(this.data.phoneNum.trim())) {
       wx.showToast({
         title: '请输入正确的手机号',
         icon: 'none',
@@ -101,7 +103,7 @@ Page({
       return 0;
     }
     var that = this;
-    var num = 10;
+    var num = app.globalData.sendMail;
     wx.showLoading({
       title: '加载中',
     }, setTimeout(function() {
@@ -114,7 +116,7 @@ Page({
         success: function() {
           _this.setData({
             disabled: true,
-            codename: num + "s"
+            codename: num + "s后重新获取"
           })
         }
       })
@@ -124,12 +126,12 @@ Page({
         if (num <= 0) {
           clearInterval(timer);
           _this.setData({
-            codename: '重新发送',
+            codename: '重新获取',
             disabled: false
           })
         } else {
           _this.setData({
-            codename: num + "s",
+            codename: num + "s后重新获取",
             disabled: true
           })
         }
@@ -144,13 +146,13 @@ Page({
   register: function() {
     let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
     let n = /^\d{6}$/;
-    if (this.data.phone.trim() == ''||!myreg.test(this.data.phone.trim())) {
+    if (this.data.phoneNum.trim() == ''||!myreg.test(this.data.phoneNum.trim())) {
       wx.showToast({
         title: '请输入正确的手机号',
         icon: 'none',
         duration: 1000
       })
-    } else if (this.data.valid.trim() == '' || !n.test(this.data.valid.trim())) {
+    } else if (this.data.validation.trim() == '' || !n.test(this.data.validation.trim())) {
       wx.showToast({
         title: '请输入正确的验证码',
         icon: 'none',
@@ -158,11 +160,19 @@ Page({
       })
       return 0;
     }else {
+      getApp().globalData.phoneNum = this.data.phoneNum.trim();
+      getApp().globalData.validation = this.data.validation.trim();
+      getApp().globalData.setTime =  new Date().getTime();
       wx.showToast({
         title: '注册成功',
         icon: 'success',
         duration: 1000
       })
+      setTimeout(function(){
+        wx.switchTab({
+          url: '../index/index',
+        })
+      },1000)
     }
   }
 })
