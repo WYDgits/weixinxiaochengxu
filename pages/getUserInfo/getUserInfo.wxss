@@ -1,0 +1,22 @@
+/* pages/getUserInfo/getUserInfo.wxss */
+
+.bkg {
+  width: 30%;
+  margin-left: 35%;
+  margin-top: 20%;
+}
+.btn {
+  width: 60%;
+  top: 50%;
+  left: 20%;
+  right: 20%;
+  position: absolute;
+  
+}
+
+.btn button {
+  border-radius: 30px;
+  margin: 0 auto;
+  background: #2db8f8;
+}
+

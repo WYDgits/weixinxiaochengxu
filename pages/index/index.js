@@ -24,15 +24,49 @@ Page({
     }
   },
   onShow:function(){
-    this.setData({
-      phoneNum: app.globalData.phoneNum,
-      password: app.globalData.password,
-      Y: new Date(app.globalData.setTime * 1 + app.globalData.clearSto * 1).getFullYear(),
-      M: new Date(app.globalData.setTime * 1 + app.globalData.clearSto * 1).getMonth()+1,
-      D: new Date(app.globalData.setTime * 1 + app.globalData.clearSto * 1).getDate(),
-      H: new Date(app.globalData.setTime * 1 + app.globalData.clearSto * 1).getHours(),
-      F: new Date(app.globalData.setTime * 1 + app.globalData.clearSto * 1).getMinutes(),
-      S: new Date(app.globalData.setTime * 1 + app.globalData.clearSto * 1).getSeconds()
+    console.log(new Date().getTime())
+    var _this = this
+    wx.getStorage({
+      key: 'phoneNum',
+      success: function (res) { 
+        console.log(res.data)
+        // return ;
+        if (new Date().getTime() > res.data.deadline ){
+          wx.showToast({
+            title: '身份验证过期',
+            image: '../../images/error.png',
+            success :function(){
+              wx.clearStorage()
+              setTimeout(function () {
+                wx.redirectTo({
+                  url: '../register/register',
+                })
+              }, 1000)
+            }
+          })
+        }
+        _this.setData({
+          phoneNum:res.data.phoneNum,
+          password: res.data.password,
+          Y: new Date(res.data.deadline).getFullYear(),
+          M: new Date(res.data.deadline).getMonth() + 1,
+          D: new Date(res.data.deadline).getDate(),
+          H: new Date(res.data.deadline).getHours(),
+          F: new Date(res.data.deadline).getMinutes(),
+          S: new Date(res.data.deadline).getSeconds()
+        })
+      },
+      fail: function () {
+        wx.showToast({
+          title: '身份验证已过期',
+          image: '../../images/error.png'
+        })
+          setTimeout(function () {
+            wx.redirectTo({
+              url: '../register/register',
+            })
+          }, 1000)
+      }
     })
   },
   onReady: function() {
